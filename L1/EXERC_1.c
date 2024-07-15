@@ -112,7 +112,7 @@ int main() {
         } else {
             printf("Erro: campo %d invalido.\n", cam);
         }
-    } while (resultado == 0);
+    } while (resultado != 0);
 
     return 0;
 }
