@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 
-// Definição da struct memoria
 typedef struct {
     double quantidade;
-    char unidade[3]; // GB ou MB
+    char unidade[3]; 
 } memoria;
 
-// Definição da struct celular
 typedef struct {
     char marca_modelo[50];
     double preco;
@@ -16,11 +14,9 @@ typedef struct {
     int num_chips;
 } celular;
 
-// Procedimento para leitura de um celular
 void leituraCelular(celular *c) {
     printf("Digite a marca/modelo do aparelho: ");
-    fgets(c->marca_modelo, 50, stdin);
-    c->marca_modelo[strcspn(c->marca_modelo, "\n")] = '\0'; // Remover o '\n' no final
+    scanf("%[^\n]%*c", c->marca_modelo);
 
     printf("Digite o preco: ");
     scanf("%lf", &c->preco);
@@ -29,7 +25,7 @@ void leituraCelular(celular *c) {
     scanf("%lf", &c->ram.quantidade);
 
     printf("Digite a unidade da memoria RAM (GB/MB): ");
-    scanf("%s", c->ram.unidade);
+    scanf("%s%*c", c->ram.unidade);
 
     printf("Digite o peso em gramas: ");
     scanf("%d", &c->peso);
@@ -38,7 +34,6 @@ void leituraCelular(celular *c) {
     scanf("%d", &c->num_chips);
 }
 
-// Função para comparar dois celulares
 int compara(celular c1, celular c2, int cam) {
     if (cam < 2 || cam > 5) {
         return 0;
@@ -71,7 +66,6 @@ int compara(celular c1, celular c2, int cam) {
     return 0;
 }
 
-// Procedimento para imprimir os dados de um celular
 void imprimeCelular(celular c) {
     printf("Marca/Modelo: %s\n", c.marca_modelo);
     printf("Preco: %.2lf\n", c.preco);
@@ -84,16 +78,12 @@ int main() {
     celular c1, c2;
     int cam, resultado;
 
-    // Leitura dos celulares
     printf("Leitura do primeiro celular:\n");
     leituraCelular(&c1);
-    getchar(); // Limpar o buffer do '\n' restante
 
     printf("Leitura do segundo celular:\n");
     leituraCelular(&c2);
-    getchar(); // Limpar o buffer do '\n' restante
 
-    // Comparação dos celulares
     do {
         printf("Digite o numero da caracteristica a ser analisada (2-5): ");
         scanf("%d", &cam);
