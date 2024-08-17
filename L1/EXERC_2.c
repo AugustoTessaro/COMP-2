@@ -1,47 +1,39 @@
+
+
 #include <stdio.h>
-#include <string.h>
+#include <stdbool.h>
 
 #define TAMANHO 10
 
-bool verificaRepetidos(double *vetor, double numero, int count){
-    for (size_t i = 0; i < count; i++)
-    {
-        if (numero == vetor[i])
-        {
+bool verificaRepetidos(double *vetor, double numero, int count) {
+    for (int i = 0; i < count; i++) {
+        if (numero == vetor[i]) {
             return false;
         }
-        
     }
-
     return true;
-    
 }
 
-void carregaConjunto(double *vetor){
+void carregaConjunto(double *vetor) {
     int contador = 0;
     double numero;
-    while (contador < TAMANHO)
-    {
+    while (contador < TAMANHO) {
         printf("Digite um valor para o vetor, ate entao o vetor contem %d valores distintos \n", contador);
         scanf("%lf", &numero);
-        if(verificaRepetidos(vetor, numero, contador))
-        {
+        if (verificaRepetidos(vetor, numero, contador)) {
             vetor[contador] = numero;
             contador++;
-        }
-        else
-        {
+        } else {
             printf("Voce digitou um numero repetido amigo \n");
         }
     }
-     
 }
 
-void diferenca(double *resultado, double *conjunto1, double *conjunto2) {
+void diferenca(double *resultado, double *conjunto1, double *conjunto2, int *tamanhoResultado) {
     int contador = 0;
-    for (size_t i = 0; i < TAMANHO; i++) {
+    for (int i = 0; i < TAMANHO; i++) {
         bool found = false;
-        for (size_t j = 0; j < TAMANHO; j++) {
+        for (int j = 0; j < TAMANHO; j++) {
             if (conjunto1[i] == conjunto2[j]) {
                 found = true;
                 break;
@@ -52,21 +44,20 @@ void diferenca(double *resultado, double *conjunto1, double *conjunto2) {
             contador++;
         }
     }
+    *tamanhoResultado = contador;
 }
 
-void imprimeConjunto(double *vetor) {
+void imprimeConjunto(double *vetor, int tamanho) {
     printf("Elementos do conjunto resultado:\n");
-    for (size_t i = 0; i < sizeof(vetor); i++) {
-        if (vetor[i] != 0) {
-            printf("%lf ", vetor[i]);
-        }
+    for (int i = 0; i < tamanho; i++) {
+        printf("%.2lf ", vetor[i]);
     }
     printf("\n");
 }
 
-int main(){
-
-    double x[TAMANHO], y[TAMANHO], resultado[TAMANHO];
+int main() {
+    double x[TAMANHO], y[TAMANHO], resultado[TAMANHO] = {0};
+    int tamanhoResultado = 0;
 
     printf("Preencha o conjunto X:\n");
     carregaConjunto(x);
@@ -74,10 +65,9 @@ int main(){
     printf("Preencha o conjunto Y:\n");
     carregaConjunto(y);
 
-    diferenca(resultado, x, y);
+    diferenca(resultado, x, y, &tamanhoResultado);
 
-    imprimeConjunto(resultado);
+    imprimeConjunto(resultado, tamanhoResultado);
 
     return 0;
 }
-

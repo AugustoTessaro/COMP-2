@@ -16,7 +16,7 @@ typedef struct {
 
 void leituraCelular(celular *c) {
     printf("Digite a marca/modelo do aparelho: ");
-    scanf("%[^\n]%*c", c->marca_modelo);
+    scanf(" %49[^\n]", c->marca_modelo);  
 
     printf("Digite o preco: ");
     scanf("%lf", &c->preco);
@@ -25,7 +25,7 @@ void leituraCelular(celular *c) {
     scanf("%lf", &c->ram.quantidade);
 
     printf("Digite a unidade da memoria RAM (GB/MB): ");
-    scanf("%s%*c", c->ram.unidade);
+    scanf(" %2s", c->ram.unidade);  
 
     printf("Digite o peso em gramas: ");
     scanf("%d", &c->peso);
@@ -33,7 +33,6 @@ void leituraCelular(celular *c) {
     printf("Digite o numero de chips: ");
     scanf("%d", &c->num_chips);
 }
-
 int compara(celular c1, celular c2, int cam) {
     if (cam < 2 || cam > 5) {
         return 0;
@@ -80,6 +79,7 @@ int main() {
 
     printf("Leitura do primeiro celular:\n");
     leituraCelular(&c1);
+    scanf("%[^\n]%*c");
 
     printf("Leitura do segundo celular:\n");
     leituraCelular(&c2);

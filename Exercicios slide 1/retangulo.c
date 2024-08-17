@@ -13,12 +13,11 @@ int main(){
 
     double l1, l2, A, P;
 
-
     printf("Digite os valores dos lados do seu retangulo\n");
     scanf("%lf%lf", &l1, &l2);    
 
     medidasDoRetangulo(l1, l2, &A, &P);
-
+    
     printf("A area do retangulo e: %lf. \nO perimetro do seu retangulo e: %lf", A, P);
     return 0;
 }

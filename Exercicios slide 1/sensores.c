@@ -2,11 +2,8 @@
 #include <math.h>
 
 
-void leitura(int *s1,int *s2, int *s3)
-{
-    printf("Digite os valores para cada um dos sensores\n");
-    scanf("%d%d%d", s1, s2, s3);
-}
+void leitura();
+int media_sensor();
 
 int media_sensor(int s1, int s2, int s3)
 {
@@ -15,6 +12,13 @@ int media_sensor(int s1, int s2, int s3)
 
     return (s1 + s2 + s3)/3;
 }
+
+void leitura(int *s1,int *s2, int *s3)
+{
+    printf("Digite os valores para cada um dos sensores\n");
+    scanf("%d%d%d", s1, s2, s3);
+}
+
 
 int main(){
     int s1, s2, s3, result;
