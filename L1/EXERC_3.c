@@ -25,7 +25,7 @@ int main(){
     printf("Digite qualquer coisa e ao terminar tecle Enter \n");
     fgets(s1, sizeof(s1), stdin);
 
-    const char* s2 = filtro(s1);
+    char* s2 = filtro(s1);
 
     printf("String filtrada: %s", s2);
 

@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-
-
 typedef struct
 {
     char fabricante[255];
@@ -10,6 +8,7 @@ typedef struct
     char cor[255];
     double preco;
 }carro;
+
 
 
 carro createcarro(){
@@ -37,11 +36,16 @@ int parsedate(int ano){
     return ano % 100;
 }
 
-void printcarro(carro c1){
+void printcarro(carro *c1){
     
+    c1->ano = 
+    (*c1).ano
+
     printf("Seu carro e:\n%s\n%s\n%d\n%s\n%lf", c1.fabricante, c1.modelo, parsedate(c1.ano), c1.cor , c1.preco);
 
 }
+
+void parsecarro()
 
 
 int main(){
