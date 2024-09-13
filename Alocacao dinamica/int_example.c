@@ -31,8 +31,5 @@ int main(){
 
 // exemplo de alocação dinamica com int
     exemplo_int();
-
-
-
     return 0;
 }
