@@ -13,29 +13,32 @@ void show_lists(Node *head1, Node *head2);
 void read_csv();
 
 
-
 int main(){
     Node *head1 = NULL;
     Node *head2 = NULL;
 
-    append(&head1, 1.1);
-    append(&head1, 2.2);
-    append(&head2, 3.3);
+    read_csv(&head1, &head2);
 
     show_lists(head1, head2);
 
     return 0;
 }
 
-void read_csv(){
+void read_csv(Node **head1, Node **head2){
 
     FILE *file = fopen("acelerometro.csv", "r");
    
-    
+    double *array = (double*) malloc(2 * sizeof(double));
+  
+    while (fscanf(file, "%lf;%lf", &array[0], &array[1]) == 2) {
+        append(head1, array[0]);
+        append(head2, array[1]);
+    }
+
+    free(array);
+    fclose(file);
 }
-
-
-
+    
 Node *create_node(double data){
     Node *new_node = (Node*) malloc(sizeof(Node)); // aloca memoria para um novo nó
     new_node->next = NULL; // inicializa o novo nó 
@@ -62,7 +65,7 @@ void show_lists(Node *head1, Node *head2) {
     printf("Lista 1: \n");
     Node *aux = head1;
     while (aux != NULL) {
-        printf("%.2f     \n", aux->data);
+        printf("%.9f     \n", aux->data);
         aux = aux->next;
     }
     printf("=========\n");
@@ -70,9 +73,8 @@ void show_lists(Node *head1, Node *head2) {
     printf("Lista 2: \n");
     aux = head2;
     while (aux != NULL) {
-        printf("%.2f     \n", aux->data);
+        printf("%.9f     \n", aux->data);
         aux = aux->next;
     }
     printf("=========\n");
 }
-
