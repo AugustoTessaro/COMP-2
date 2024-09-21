@@ -7,6 +7,8 @@ typedef struct Node
     struct Node *next;
 }Node; 
 
+
+
 Node* create_node();
 void append();
 void show_lists(Node *head1, Node *head2);
