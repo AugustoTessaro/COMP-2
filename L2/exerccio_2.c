@@ -13,6 +13,7 @@ void show_lists();
 void read_csv();
 void calculate_percentual_variation();
 double find_higher_value();
+void free_list();
 
 int main(){
     Node *head1 = NULL;
@@ -23,7 +24,10 @@ int main(){
     calculate_percentual_variation(head1, head2, &head3);
 
     show_lists(head1, head2, head3);
-    // show_higher_value(head3);
+    
+    free_list(head1);
+    free_list(head2);
+    free_list(head3);
 
     return 0;
 }
@@ -41,6 +45,14 @@ double find_higher_value(Node *head3){
     return value;
 }
 
+void free_list(Node *head) {
+    Node *temp;
+    while (head != NULL) {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+}
 
 void calculate_percentual_variation(Node *head1, Node *head2, Node **head3){
     Node *aux1 = head1;
@@ -93,43 +105,29 @@ void append(Node **head, double data) {
 }
 
 void show_lists(Node *head1, Node *head2, Node *head3) {
-    printf("Coluna 1: \n");
-    Node *aux = head1;
-    double i = 0;
-    while (aux != NULL) {
-        printf("t = %.2f s : %.9f     \n", i, aux->data);
-        aux = aux->next;
-        i += 0.5;
-    }
-    printf("=====================\n");
+    printf("=================================================================\n");
+    printf("Tempo     | Coluna 1:       | Coluna 2:       | Coluna 3:       |\n");
+    printf("----------+-----------------+-----------------+------------------\n");
 
-    printf("Coluna 2: \n");
-    aux = head2;
-    double k = 0;
-    while (aux != NULL) {
-        printf("t = %.2f s : %.9f     \n", k, aux->data);
-        aux = aux->next;
-        k += 0.5;
-    }
-    printf("=====================\n");
-
-    printf("Resultados da variacao percentual: \n");
-
+    Node *aux1 = head1;
+    Node *aux2 = head2;
+    Node *aux3 = head3;
     double higher_value = find_higher_value(head3);
 
-    aux = head3;
-    double j = 0;
-    while (aux != NULL) {
-        if (aux->data == higher_value)
+    double i = 0;
+    while (aux1 != NULL && aux2 != NULL && aux3 != NULL) {
+        if (aux3->data == higher_value)
         {
-            printf("t = %.2f s : %.9f     ==> Maior valor\n", j, aux->data);
+            printf("t = %.2fs | %-15.9f | %-15.9f | %-15.9f | ==> Maior variacao percentual\n", i, aux1->data, aux2->data, aux3->data);
         }else{
-            printf("t = %.2f s : %.9f     \n", j, aux->data);
+            printf("t = %.2fs | %-15.9f | %-15.9f | %-15.9f |\n", i, aux1->data, aux2->data, aux3->data);
         }
         
-        
-        aux = aux->next;
-        j += 0.5;
+        aux1 = aux1->next;
+        aux2 = aux2->next;
+        aux3 = aux3->next;
+
+        i += 0.5;
     }
-    printf("=====================\n");
+    printf("=================================================================\n");
 }
