@@ -30,14 +30,14 @@ void read_csv(Node **head1, Node **head2){
 
     FILE *file = fopen("acelerometro.csv", "r");
    
-    double *array = (double*) malloc(2 * sizeof(double));
+    double data1;
+    double data2;
   
-    while (fscanf(file, "%lf;%lf", &array[0], &array[1]) == 2) {
-        append(head1, array[0]);
-        append(head2, array[1]);
+    while (fscanf(file, "%lf;%lf", &data1, &data2) == 2) {
+        append(head1, data1);
+        append(head2, data2);
     }
 
-    free(array);
     fclose(file);
 }
     
