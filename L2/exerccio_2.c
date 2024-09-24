@@ -93,14 +93,14 @@ Node *create_node(double data){
 void append(Node **head, double data) {
     Node *new_node = create_node(data);
 
-    if (*head == NULL) { // Se a lista estiver vazia, o novo nó será o primeiro
+    if (*head == NULL) { 
         *head = new_node;
     } else {
-        Node *aux = *head; // cria um nó auxiliar para iterar em toda a lista até chegar no ultimo nó (aka nó com next == NULL)
+        Node *aux = *head; 
         while (aux->next != NULL) {
             aux = aux->next;
         }
-        aux->next = new_node; // quando encontou o ultimo nó encadeia o nó (new) ao atual ultimo nó
+        aux->next = new_node;
     }
 }
 
@@ -118,9 +118,9 @@ void show_lists(Node *head1, Node *head2, Node *head3) {
     while (aux1 != NULL && aux2 != NULL && aux3 != NULL) {
         if (aux3->data == higher_value)
         {
-            printf("t = %.2fs | %-15.9f | %-15.9f | %-15.9f | ==> Maior variacao percentual\n", i, aux1->data, aux2->data, aux3->data);
+            printf("t = %.1fs  | %-15.9f | %-15.9f | (%-12.9f)  | ==> Maior variacao percentual\n", i, aux1->data, aux2->data, aux3->data);
         }else{
-            printf("t = %.2fs | %-15.9f | %-15.9f | %-15.9f |\n", i, aux1->data, aux2->data, aux3->data);
+            printf("t = %.1fs  | %-15.9f | %-15.9f | %-15.9f |\n", i, aux1->data, aux2->data, aux3->data);
         }
         
         aux1 = aux1->next;
