@@ -33,6 +33,9 @@ int main(){
 }
 
 double find_higher_value(Node *head3){
+
+    if (head3 == NULL) return 0;
+
     Node *aux = head3;
     double value = aux->data;
     while(aux != NULL){
@@ -70,7 +73,12 @@ void calculate_percentual_variation(Node *head1, Node *head2, Node **head3){
 void read_csv(Node **head1, Node **head2){
 
     FILE *file = fopen("acelerometro.csv", "r");
-   
+
+    if (file == NULL) {
+        printf("Erro ao abrir o arquivo CSV\n");
+        return;
+    }
+
     double data1;
     double data2;
   
@@ -83,9 +91,15 @@ void read_csv(Node **head1, Node **head2){
 }
     
 Node *create_node(double data){
-    Node *new_node = (Node*) malloc(sizeof(Node)); // aloca memoria para um novo nó
-    new_node->next = NULL; // inicializa o novo nó 
-    new_node->data = data; //
+    Node *new_node = (Node*) malloc(sizeof(Node)); 
+    
+    if (new_node == NULL) {
+        fprintf(stderr, "Erro: falha ao alocar memória para um novo nó.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    new_node->next = NULL; 
+    new_node->data = data; 
 
     return new_node;
 }

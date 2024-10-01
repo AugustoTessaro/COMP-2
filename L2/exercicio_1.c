@@ -11,6 +11,11 @@ void input_tools(int **p, int *n){
 
     *p = (int *)malloc( *n * sizeof(int));
 
+    if (*p == NULL) {
+        printf("Erro ao alocar memória.\n");
+        exit(1); 
+    }
+
     for(int i = 0; i < *n; i++){
         printf("Numero do patrimonio:\n");
         scanf("%d", &(*p)[i]);
@@ -20,7 +25,7 @@ void input_tools(int **p, int *n){
 }
 
 void show_tools(int *p, int n){
-    for (size_t i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         printf("Ferramenta %d tem codigo igual a: %d\n", i + 1, p[i]);
     }
